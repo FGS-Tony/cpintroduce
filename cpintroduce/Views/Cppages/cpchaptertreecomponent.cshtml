@@ -1,0 +1,89 @@
+﻿
+<kendo-grid [data]="view | async"
+            [height]="500"
+              [resizable]="true"
+            [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
+            [pageable]="true" [sortable]="true"
+            (dataStateChange)="onStateChange($event)"
+            (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
+            (save)="saveHandler($event)" (remove)="removeHandler($event)"
+            (add)="addHandler($event)">
+    <ng-template kendoGridToolbarTemplate>
+        <button *ngIf="cpbookno > 0 || cpchapterupper > 0" kendoGridAddCommand>新增章節內容</button>
+        <span style="margin-left:1em">上層名稱:{{cpchapter_upname}}</span>
+    </ng-template>
+    <kendo-grid-column field="cpchapter_name" title="章節名稱"></kendo-grid-column>
+    <kendo-grid-column field="cpchapter_sort" title="章節排序" [width]="100"></kendo-grid-column>
+    @*<kendo-grid-column field="cpbook_isvalid" editor="boolean" title="是否有效">
+            <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.cpbook_isvalid ? "有效" : "無效"}}
+            </ng-template>
+        </kendo-grid-column>*@
+    <kendo-grid-command-column title="功能鍵" width="220">
+        <ng-template kendoGridCellTemplate let-isNew="isNew">
+            <button kendoGridEditCommand class="k-primary">修改</button>
+            <button kendoGridRemoveCommand>刪除</button>
+            <button #savebtn kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? '新增存檔' : '修改存檔' }}</button>
+            <button #cancelbtn kendoGridCancelCommand>{{ isNew ? '新增取消' : '修改取消' }}</button>
+        </ng-template>
+    </kendo-grid-command-column>
+    <kendo-grid-messages noRecords="無資料顯示">
+    </kendo-grid-messages>
+
+</kendo-grid>
+
+
+ <kendo-dialog *ngIf="opened" (close)="close()" [minWidth]="900" [width]="1024" [height]="700" > 
+ 
+    <kendo-dialog-titlebar style="text-align:center">
+        <div class="text-center" style="float:left">
+            <button type="button" class="k-button k-primary" (click)="submit()"  style="margin-right:1em">確認存檔</button>
+            <button type="button" class="k-button" (click)="close()">放棄{{ isNew ? '新增' : '修改' }} </button>
+            <span style="margin-left:25em">{{ isNew ? '新增資料' : '修改資料' }} </span>
+        </div>
+    </kendo-dialog-titlebar>    
+ 
+    <form [formGroup]="formGroup">
+        <div class="form-group row" style="margin-top:-0.8em">
+           <div class="col-sm-8">
+              <div class="col-sm-2">
+                 <label  style="float:right;margin-top:0.8em" for="cpchapter_name">章節名稱:</label>
+              </div>
+              <div class="col-sm-10 left">
+                  <input class="form-control" id="cpchapter_name" type="text" placeholder="請輸入章節名稱" formControlName="cpchapter_name" />
+              </div>
+          </div>
+           <div class="col-sm-4">
+               <div class="col-sm-6">
+                   <label  style="float:right;margin-top:0.8em" for="cpchapter_name">文章排序:</label>
+               </div>
+               <div class="col-sm-6 left">
+                   <input class="form-control" id="cpchapter_sort" type="text" placeholder="請輸入排序" formControlName="cpchapter_sort" />
+               </div>
+           </div>
+        </div>
+        <div class="form-check form-check-inline" style="margin-top:-0.8em">
+            <label for="cpchapter_iscontents" class="control-label">
+                章節是否為文章內容(打勾者為內容):
+                <input type="checkbox" formControlName="cpchapter_iscontents" />
+            </label>
+        </div>
+        <div class="form-group" *ngIf="formGroup.get('cpchapter_iscontents').value">
+            <label for="cpchapter_contents"> 文章內容   </label>
+            @*<button type="button" class="k-button" (click)="preview()">預覽</button>*@
+            @*<a href="/cppages/contact?id={{cpchapterno}}" target="_blank"> 預覽</a>*@
+            <ng2-summernote1 formControlName="cpchapter_contents" lang="zh-TW" serverImgUp hostUpload="{{hostUpload}}" uploadFolder="{{uploadFolder}}" [widht]="800" [height]="500"></ng2-summernote1>
+        </div>
+    </form>
+     @*<kendo-window *ngIf="opened1"  (close)="close1()" [minWidth]="750" [width]="1024" [height]="900" [top]="0" [left]="0" [draggable]="false">  
+         <kendo-window-titlebar>
+             <div class='k-window-title'>文章預覽</div>
+             <button type="button" class="k-button" (click)="close1()">關  閉</button> 
+         </kendo-window-titlebar>
+         
+        <div [innerHTML]="formGroup.get('cpchapter_contents').value" style="width:800px">
+
+         </div> 
+        
+     </kendo-window>*@
+</kendo-dialog>

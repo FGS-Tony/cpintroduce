@@ -1,0 +1,53 @@
+﻿<kendo-dialog *ngIf="active" (close)="closeForm()" [width]="1024" [height]="450">
+    <kendo-dialog-titlebar style="text-align:center">
+        {{ isNew ? '新增資料' : '修改資料' }}
+    </kendo-dialog-titlebar>
+    <p-growl [(value)]="msgs" life=6000></p-growl>
+
+    <form novalidate [formGroup]="editForm">
+        <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px;margin-bottom:1.5em">
+            <div class="ui-grid-row"  >
+                <div class="ui-grid-col-2 text-right">
+                    <label for="vegroot_volume" class="labelred" style="margin-top:0.5em">菜根譚文章冊數:</label>
+                </div>
+                <div class="ui-grid-col-1">
+                    <input type="number" class="form-control" formControlName="vegroot_volume" placeholder="輸入菜根譚冊數" />
+                </div>
+                <div class="ui-grid-col-2 text-left">
+                    <label for="vegroot_volume" class="labelred" style="margin-top:0.5em">冊</label>
+                </div>
+                <div class="ui-grid-col-6">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!editForm.controls.vegroot_volume.valid && editForm.controls.vegroot_volume.dirty">
+                        <i class="fa fa-close"></i>欄位不充許空白
+                    </div>
+                </div>
+            </div>
+           
+               
+            
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2 text-right">
+                    <label for="vegroot_content" class="labelred">菜根譚文章內容:</label>
+                </div>
+                <div class="ui-grid-col-10">
+                    <textarea type="text" rows="13" class="form-control " formControlName="vegroot_content" placeholder="輸入菜根譚文章內容"> </textarea>
+                </div>
+
+            </div>
+            <div class="ui-grid-row" style="margin-bottom:1.5em">
+                <div class="ui-grid-col-2 text-right">
+
+                </div>
+                <div class="ui-grid-col-10">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!editForm.controls.vegroot_content.valid && editForm.controls.vegroot_content.dirty">
+                        <i class="fa fa-close"></i>欄位不充許空白
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <kendo-dialog-actions  >
+        <button class="k-button k-primary" [disabled]="!editForm.valid " (click)="onSave($event)" style="font-size:12px;padding-right:4em;padding-left:4em;margin-right:2em">存檔</button>
+        <button class="k-button" (click)="onCancel($event)" style="font-size:12px;padding-right:4em;padding-left:4em">放棄</button>
+    </kendo-dialog-actions>
+</kendo-dialog>

@@ -1,0 +1,68 @@
+﻿
+    
+<section class="content-header">
+    <h1>
+        全集大類資料維護
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>首頁</a></li>
+        <li class="active">全集大類資料維護</li>
+    </ol>
+</section>
+<section class="content">
+
+    <div class="box box-primary">
+        <div class="box-header">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label [for]="'querystring'">請輸入查詢全集大類名稱: </label>
+                    <input id="querystring" kendoTextBox [(ngModel)]="querystring" style="max-width:400px;width:400px" />
+                </div>
+                <div class="col-lg-6">
+                    <button kendoButton (click)="doQuery()" [primary]="true" class="btn-primary" style="width:200px">執行查詢</button>
+                </div>
+            </div>
+        </div>
+        <div class="box-body">
+            <div [ngBusy]="busy"></div>
+            <kendo-grid [data]="view | async"
+                        [resizable]="true"
+                        [height]="500"
+                        [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
+                        [pageable]="true" [sortable]="true"
+                        (dataStateChange)="onStateChange($event)"
+                        (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
+                        (save)="saveHandler($event)" (remove)="removeHandler($event)"
+                        (add)="addHandler($event)">
+                <ng-template kendoGridToolbarTemplate>
+                    <button kendoGridAddCommand>新增資料</button>
+                </ng-template>
+                <kendo-grid-column field="cpbclass_no" title="大類代號">
+                    @*<ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                <strong>{{dataItem.cpbclass_no}}</strong>
+            </ng-template>*@
+                    <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                        <strong>{{dataItem.cpbclass_no}}</strong>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="cpbclass_name" title="大類名稱"></kendo-grid-column>
+                <kendo-grid-column field="cpbclass_sort" title="大類排序"></kendo-grid-column>
+                <kendo-grid-column field="cpbclass_isdisplay" editor="boolean" title="是否顯示">
+                    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                        {{dataItem.cpbclass_isdisplay ? "顯示" : "不顯示"}}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-command-column title="功能鍵" width="220">
+                    <ng-template kendoGridCellTemplate let-isNew="isNew">
+                        <button kendoGridEditCommand class="k-primary">修改</button>
+                        <button kendoGridRemoveCommand>刪除</button>
+                        <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? '新增存檔' : '修改存檔' }}</button>
+                        <button kendoGridCancelCommand>{{ isNew ? '取消' : '取消' }}</button>
+                    </ng-template>
+                </kendo-grid-command-column>
+                <kendo-grid-messages noRecords="無資料顯示">
+                </kendo-grid-messages>
+            </kendo-grid>
+        </div>
+    </div>
+</section>

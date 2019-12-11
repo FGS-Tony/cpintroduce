@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "diagnostics": true,
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [ "es2015", "dom" ],
+    "listFiles": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    //"outDir": "wwwroot",
+    "removeComments": false,
+    "rootDir": "wwwroot",
+    "sourceMap": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es5"
+    }   ,
+    "exclude": [
+      "node_modules",
+      "wwwwroot"
+    ]
+}

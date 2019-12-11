@@ -1,0 +1,66 @@
+﻿
+
+<section class="content-header">
+    <h1>
+        佛光菜根譚資料維護
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>首頁</a></li>
+        <li class="active"> 佛光菜根譚資料維護</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="box box-primary">
+        <div class="box-body">
+            <div [ngBusy]="busy"></div>
+            <kendo-grid [data]="view | async"
+                        [height]="500"
+                        [resizable]="true"
+                        [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
+                        [pageable]="true" [sortable]="true"
+                        (dataStateChange)="onStateChange($event)"
+                        (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
+                        (save)="saveHandler($event)" (remove)="removeHandler($event)"
+                        (add)="addHandler($event)">
+                <ng-template kendoGridToolbarTemplate>
+                    <div class="ui-grid-col-2">
+                        <button kendoGridAddCommand>新增菜根譚文章</button>
+                    </div>
+                    <div class="ui-grid-col-2 text-right">
+                        <label style="font-size:12px;margin-top: 0.5em;">請輸入查詢文章內容:</label>
+                    </div>
+                    <div class="ui-grid-col-4">
+                        <input type="text" class="form-control" [(ngModel)]="queryName" />
+                    </div>
+                    <div class="ui-grid-col-4 text-center">
+                        <button class="k-button k-primary" (click)="doQuery()" style="font-size:12px;padding-right:4em;padding-left:4em;margin-right:2em;margin-top: 0.5em;">執行查詢</button>
+                    </div>
+                </ng-template>
+                @*<kendo-grid-column field="vegroot_sort" [width]="60" title="編號"></kendo-grid-column>*@
+                <kendo-grid-column field="vegroot_no" [width]="40" title="序號"></kendo-grid-column>
+                <kendo-grid-column field="vegroot_volume" [width]="40" title="冊別"></kendo-grid-column>
+                <kendo-grid-column field="vegroot_content" [width]="500" title="文章內容" [style]="{'white-space':'nowrap'}"></kendo-grid-column>
+                <kendo-grid-column field="ctime" title="建立日期" [width]="100" [filterable]="false">
+                    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                        {{dataItem.ctime | date:'yyyy/MM/dd'}}
+                    </ng-template>
+                </kendo-grid-column>
+
+                <kendo-grid-command-column title="修改" width="100">
+                    <ng-template kendoGridCellTemplate>
+                        <button kendoGridEditCommand class="k-primary">修改資料</button>
+                        <button kendoGridRemoveCommand>刪除資料</button>
+                    </ng-template>
+                </kendo-grid-command-column>
+                <kendo-grid-messages noRecords="無資料顯示">
+                </kendo-grid-messages>
+            </kendo-grid>
+            
+            <vegroot-edit-form [model]="editDataItem" [isNew]="isNew"
+                               (save)="saveHandler($event)"
+                               (cancel)="cancelHandler()">
+            </vegroot-edit-form>
+        </div>
+    </div>
+</section>
+

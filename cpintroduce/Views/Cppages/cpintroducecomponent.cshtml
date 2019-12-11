@@ -1,0 +1,50 @@
+﻿
+<div class="box box-primary">
+
+    <div style="margin-left:15%;width:80%;">
+        <div class="box-header with-border">
+            <button type="button" class="k-button k-primary" (click)="saveIntrduce()" style="padding-left:2em;padding-right:2em;margin-right:1em;margin-top:2em;margin-left:-1em">確認存檔</button>
+            @*<button type="button" class="k-button" style="margin-right:1em;margin-top:2em" (click)="close()">放棄存檔</button>*@
+        </div>
+        <div style="margin-top:1em;width:80%;min-height:500px">
+
+            <p-tabView>
+                <p-tabPanel header="大師自序">
+                    <div class="form-group" style="margin-top:1em">
+                        <label for="cpintro_preface">大師自序</label>
+                        <ng2-summernote1 id="cpintro_preface" [(ngModel)]="cpintro_preface" lang="zh-TW" serverImgUp hostUpload="{{hostUpload}}" uploadFolder="{{uploadFolder}}" [width]="300" [height]="350" #name="ngModel"></ng2-summernote1>
+                        @*<textarea class="form-control" id="cpintro_preface" cols="10" rows="6" placeholder="請輸入全集自序" formControlName="cpintro_preface">  </textarea>*@
+                    </div>
+                </p-tabPanel>
+                <p-tabPanel header="全集介紹">
+                    <div class="form-group" style="margin-top:1em">
+                        <label for="cpintro_intro">全集介紹</label>
+                        <ng2-summernote1 id="cpintro_intro" [(ngModel)]="cpintro_intro" lang="zh-TW" serverImgUp hostUpload="{{hostUpload}}" uploadFolder="{{uploadFolder}}" [width]="300" [height]="350" #name="ngModel"></ng2-summernote1>
+                        @*  <textarea class="form-control" id="cpintro_intro" rows="6" placeholder="請輸入全集介紹" formControlName="cpintro_intro">  </textarea>*@
+                    </div>
+                </p-tabPanel>
+                <p-tabPanel header="星雲大師略傳">
+
+                    <div class="form-group" style="margin-top:1em">
+                        <label s for="cpintro_master">星雲大師略傳</label>
+                        <ng2-summernote1 id="cpintro_master" [(ngModel)]="cpintro_master" lang="zh-TW" serverImgUp hostUpload="{{hostUpload}}" uploadFolder="{{uploadFolder}}" [width]="300" [height]="350" #name="ngModel"></ng2-summernote1>
+                        @*   <textarea class="form-control" id="cpintro_mater" rows="6" placeholder="請輸入全集星雲大師略傳" formControlName="cpintro_master"> </textarea>*@
+                    </div>
+
+                </p-tabPanel>
+                <p-tabPanel header="星雲之道">
+
+                    <div class="form-group" style="margin-top:1em">
+                        <label s for="cpintro_masterroad">星雲之道</label>
+                        <ng2-summernote1 id="cpintro_masterroad" [(ngModel)]="cpintro_masterroad" lang="zh-TW" serverImgUp hostUpload="{{hostUpload}}" uploadFolder="{{uploadFolder}}" [width]="300" [height]="350" #name="ngModel"></ng2-summernote1>
+                        @*   <textarea class="form-control" id="cpintro_mater" rows="6" placeholder="請輸入全集星雲大師略傳" formControlName="cpintro_master"> </textarea>*@
+                    </div>
+
+                </p-tabPanel>
+            </p-tabView>
+        </div>
+        @*<form [formGroup]="formGroup" style="margin-top:1em">*@
+
+    </div>
+
+</div>

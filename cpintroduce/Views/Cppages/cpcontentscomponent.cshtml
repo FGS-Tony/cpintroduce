@@ -1,0 +1,73 @@
+﻿
+<div style="display: inline-block">
+    <button type="button" class="k-button" (click)="edit()" style="margin-top:1em;margin-left:0.5em;margin-bottom: 1em;padding-left: 2em;padding-right: 2em;">修改內容</button> 
+    <a href="/previewcontents/previewcontents?id={{cpchapterno}}" target="_blank">文章預覽</a>
+</div>
+<div style="margin-left:0.5em">
+    <b>章節名稱:</b>  {{cpchapter_name}}
+</div>
+<div style="margin-left:0.5em">
+    <b>文章內容:</b>
+</div>
+
+<section class="article"  >     
+    <div [innerHTML]="cpchapter_contents | keepHtml" >
+    </div>
+</section>
+<kendo-dialog *ngIf="opened" (close)="close()" [minWidth]="900" [width]="1024" [height]="700">
+    <kendo-dialog-titlebar style="text-align:center">
+        <div class="text-center" style="float:left">
+            <button type="button" class="k-button k-primary" (click)="submit()" style="margin-right:1em">確認存檔</button>
+            <button type="button" class="k-button" (click)="close()">放棄存檔</button>
+            <span style="margin-left:25em">修改資料</span>
+        </div>
+    </kendo-dialog-titlebar>
+    @*<form #contentForm="ngForm">*@
+    <div class="form-group row" >        
+        <div class="col-sm-8">
+            <div class="col-sm-2">
+                <label style="float:right;margin-top:0.8em" for="cpchapter_name">章節名稱:</label>
+            </div>
+            <div class="col-sm-10 left">
+                <input class="form-control" id="cpchapter_name" type="text" placeholder="請輸入章節名稱" [(ngModel)]="cpchapter_name" />
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="col-sm-6">
+                <label style="float:right;margin-top:0.8em" for="cpchapter_name">文章排序:</label>
+            </div>
+            <div class="col-sm-6 left">
+                <input class="form-control" id="cpchapter_sort" type="text" placeholder="請輸入排序" [(ngModel)]="cpchapter_sort" />
+            </div>
+        </div>    
+    </div>
+    <div>
+        <label for="cpchapter_contents"> 文章內容  </label>
+        @*<button type="button" class="k-button" (click)="preview()">預覽</button>*@
+        <ng2-summernote1 id="cpchapter_contents" [(ngModel)]="cpchapter_contents" lang="zh-TW" serverImgUp hostUpload="{{hostUpload}}" uploadFolder="{{uploadFolder}}" [width]="800" [height]="500" #name="ngModel"></ng2-summernote1>
+    </div>
+    @*</form>*@
+    @*<kendo-window *ngIf="opened1" (close)="close1()" [minWidth]="750" [width]="1024" [height]="950" [top]="0" [left]="0" [draggable]="false">
+        <kendo-window-titlebar>
+            <div class='k-window-title'> 文章預覽 </div>
+            <a href="/cppages/contact?id={{cpchapterno}}" target="_blank"> 預覽</a>
+            <button type="button" class="k-button" (click)="close1()" style="position: absolute;margin-left: 5em;padding-left: 2em; padding-right: 2em;">關閉預覽</button>
+        </kendo-window-titlebar>
+        <section class="article">
+           
+            <div id="preview" [innerHTML]="cpchapter_contents | keepHtml" style="width:800px;height:950px">
+                
+             </div>
+
+        </section>
+    </kendo-window>*@
+</kendo-dialog>
+<style type="text/css">
+    .article {
+        max-width: 900px;
+        width: 100%;
+        margin: 0 auto;
+        max-height:800px;
+        overflow:auto;
+    }
+  </style>

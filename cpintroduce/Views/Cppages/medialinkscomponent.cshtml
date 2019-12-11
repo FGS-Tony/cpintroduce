@@ -1,0 +1,54 @@
+﻿
+
+<section class="content-header">
+    <h1>
+        大師全集影音弘法連結維護
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>首頁</a></li>
+        <li class="active">影音弘法連結維護</li>
+    </ol>
+</section>
+<section class="content">
+
+    <div class="box box-primary">
+        <div class="box-body">
+            <div [ngBusy]="busy"></div>
+            <kendo-grid [data]="view | async"
+                        [resizable]="true"
+                        [height]="500"
+                        [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
+                        [pageable]="true" [sortable]="true"
+                        (dataStateChange)="onStateChange($event)"
+                        (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
+                        (save)="saveHandler($event)" (remove)="removeHandler($event)"
+                        (add)="addHandler($event)">
+                <ng-template kendoGridToolbarTemplate>
+                    <button kendoGridAddCommand>新增資料</button>
+                </ng-template>
+                @*<kendo-grid-column field="links_no" title="序號" width="50">                    
+                    <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                        <strong>{{dataItem.links_no}}</strong>
+                    </ng-template>
+                </kendo-grid-column>*@ 
+                <kendo-grid-column field="links_name" title="連結名稱" width="200"></kendo-grid-column>
+                <kendo-grid-column field="links_url" title="連結網址" width="200">
+                    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                        <a href="{{dataItem.links_url}}" target="_blank">{{dataItem.links_url}}</a>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="links_sort" title="連結排序" width="60"></kendo-grid-column>
+                <kendo-grid-command-column title="功能鍵" width="220">
+                    <ng-template kendoGridCellTemplate let-isNew="isNew">
+                        <button kendoGridEditCommand class="k-primary">修改</button>
+                        <button kendoGridRemoveCommand>刪除</button>
+                        <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? '新增存檔' : '修改存檔' }}</button>
+                        <button kendoGridCancelCommand>{{ isNew ? '取消' : '取消' }}</button>
+                    </ng-template>
+                </kendo-grid-command-column>
+                <kendo-grid-messages noRecords="無資料顯示">
+                </kendo-grid-messages>
+            </kendo-grid>
+        </div>
+    </div>
+</section>

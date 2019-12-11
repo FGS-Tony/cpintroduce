@@ -1,0 +1,54 @@
+﻿
+<section class="content-header">
+    <h4 style="margin-left:1em">
+        全集章節內容資料維護
+    </h4>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>首頁</a></li>
+        <li class="active">全集章節內容資料維護</li>
+    </ol>
+</section>
+<section class="content">  
+        <div class="box-body">
+            <div [ngBusy]="busy"></div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="box ">
+                        <div class="box-header">
+                           選擇書籍類別或書籍書名章節
+                        </div>
+                        <kendo-treeview #chaptertreeview style="min-height:500px;max-height:600px;overflow: auto" [nodes]="cpbclass "
+                                        [textField]="[ 'cpbclass_name' ,'cpbook_name','cpchapter_name']"
+                                        kendoTreeViewExpandable
+                                        kendoTreeViewSelectable
+                                        [hasChildren]="hasChildren"
+                                        [children]="fetchChildren"
+                                        (selectionChange)="selectChange($event)"
+                                        (expand)="expand($event)"                                     >
+                            <ng-template kendoTreeViewNodeTemplate let-dataItem>
+                                <span *ngIf="dataItem.type == 'A'">
+                                    {{dataItem.cpbclass_name}}
+                                </span>
+                                <span *ngIf="dataItem.type == 'B'">
+                                    {{dataItem.cpbook_name}}
+                                </span>
+                                <span *ngIf="dataItem.type == 'C'">
+                                    {{dataItem.cpchapter_name}}
+                                </span>
+
+                                @*  <button kendoButton (click)="selectChange(dataItem)" [icon]="'folder'" >編輯內容</button>*@
+                            </ng-template>
+                        </kendo-treeview>
+                    </div>
+                </div>
+                <div class="col-md-8">                     
+                    <div class="box ">
+                        <cp-booktree (save)="saveHandler()" [bclassno]="cpbclassno" *ngIf="cptype == 'A'"></cp-booktree>
+                        <cp-chaptertree (save)="saveHandler()" [bookno]="cpbookno" [cpchapter_upname]="cpbookname"   *ngIf="cptype == 'B'"></cp-chaptertree>
+                        <cp-chaptertree (save)="saveHandler()" [chapterno]="cpchapterno" [cpchapter_upname]="cpchapter_name" [setbookno]="cpbookno" *ngIf="cptype == 'C' && !cpchapter_iscontents  "></cp-chaptertree>
+                        <cp-contents  (save)="saveHandler()" [chapterno]="cpchapterno" [cpchapter_name]="cpchapter_name" [cpchapter_contents]="cpchapter_contents" [cpchapter_sort] ="cpchapter_sort" *ngIf="cptype == 'C' && cpchapter_iscontents"></cp-contents>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

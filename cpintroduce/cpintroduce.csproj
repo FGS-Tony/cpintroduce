@@ -1,0 +1,116 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+    <UserSecretsId>aa4ef069-0fe8-4d2c-a4d1-f0e44d2c782e</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Pages\**" />
+    <Content Remove="Pages\**" />
+    <EmbeddedResource Remove="Pages\**" />
+    <None Remove="Pages\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Views\Home\Index.cshtml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\app\aboutComponent.ts" />
+    <Content Remove="wwwroot\app\cpview\CpBclass.Component.ts" />
+    <Content Remove="wwwroot\app\cpview\CpBook.Component.ts" />
+    <Content Remove="wwwroot\app\cpview\cpbooktree.component.ts" />
+    <Content Remove="wwwroot\app\cpview\CpChapter.Component.ts" />
+    <Content Remove="wwwroot\app\cpview\CpChapterTree.component.ts" />
+    <Content Remove="wwwroot\app\cpview\CpIntroduce.Component.ts" />
+    <Content Remove="wwwroot\app\cpview\Links.Component.ts" />
+    <Content Remove="wwwroot\app\cpview\MediaLinks.Component.ts" />
+    <Content Remove="wwwroot\app\cpview\VegRoot.Component.ts" />
+    <Content Remove="wwwroot\app\cpview\VegRootEdit.Component.ts" />
+    <Content Remove="wwwroot\app\directive\keep-html.pipe.ts" />
+    <Content Remove="wwwroot\app\directive\ng-summote1.js.map" />
+    <Content Remove="wwwroot\app\module\basePopupEdit.Services.ts" />
+    <Content Remove="wwwroot\app\provider\ICpintroduce.ts" />
+    <Content Remove="wwwroot\app\provider\vegroot.ts" />
+    <Content Remove="wwwroot\app\services\CpBclass.Services.ts" />
+    <Content Remove="wwwroot\app\services\CpBook.Services.ts" />
+    <Content Remove="wwwroot\app\services\CpBookTree.Services.ts" />
+    <Content Remove="wwwroot\app\services\CpChapterTree.Services.ts" />
+    <Content Remove="wwwroot\app\services\Links.Services.ts" />
+    <Content Remove="wwwroot\app\services\MediaLinks.Services.ts" />
+    <Content Remove="wwwroot\app\services\VegRootEdit.Services.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CoreCompat.System.Drawing" Version="1.0.0-beta006" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.2.0-beta1" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.ApplicationInsights.HostingStartup" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing.Abstractions" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="2.0.0-preview1-final" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Primitives" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Cppages\cpbclasscomponent.cshtml" />
+    <None Include="Views\Cppages\cpbookcomponent.cshtml" />
+    <None Include="Views\Cppages\cpbooktreecomponent.cshtml" />
+    <None Include="Views\Cppages\cpchaptercomponent.cshtml" />
+    <None Include="Views\Cppages\cpchaptertreecomponent.cshtml" />
+    <None Include="Views\Cppages\cpcontentscomponent.cshtml" />
+    <None Include="Views\Cppages\cpintroducecomponent.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CpMongo\Cpmongo.csproj" />
+    <ProjectReference Include="..\FgsModel\FgsModel\FgsModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\app\aboutComponent.ts" />
+    <TypeScriptCompile Include="wwwroot\app\cpview\CpBclass.Component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\cpview\CpBook.Component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\cpview\cpbooktree.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\cpview\CpChapter.Component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\cpview\CpChapterTree.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\cpview\CpConTents.component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\cpview\CpIntroduce.Component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\cpview\Links.Component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\cpview\MediaLinks.Component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\cpview\VegRoot.Component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\cpview\VegRootEdit.Component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\directive\keep-html.pipe.ts" />
+    <TypeScriptCompile Include="wwwroot\app\directive\ng2-summernote1.ts" />
+    <TypeScriptCompile Include="wwwroot\app\module\BasePopupEdit.Component.ts" />
+    <TypeScriptCompile Include="wwwroot\app\module\basePopupEdit.Services.ts" />
+    <TypeScriptCompile Include="wwwroot\app\provider\ICpintroduce.ts" />
+    <TypeScriptCompile Include="wwwroot\app\provider\vegroot.ts" />
+    <TypeScriptCompile Include="wwwroot\app\services\CpBclass.Services.ts" />
+    <TypeScriptCompile Include="wwwroot\app\services\CpBook.Services.ts" />
+    <TypeScriptCompile Include="wwwroot\app\services\CpBookTree.Services.ts" />
+    <TypeScriptCompile Include="wwwroot\app\services\CpChapter.Service.ts" />
+    <TypeScriptCompile Include="wwwroot\app\services\CpChapterTree.Services.ts" />
+    <TypeScriptCompile Include="wwwroot\app\services\Links.Services.ts" />
+    <TypeScriptCompile Include="wwwroot\app\services\MediaLinks.Services.ts" />
+    <TypeScriptCompile Include="wwwroot\app\services\VegRootEdit.Services.ts" />
+  </ItemGroup>
+
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="@echo &quot;---------- Cleaning up .ts files from obj folder (start) ---------&quot;&#xD;&#xA;if exist &quot;C:\app\cpintroduce\cpintroduce\obj\&quot; (&#xD;&#xA;     del C:\app\cpintroduce\cpintroduce\obj\*.ts /s /q&#xD;&#xA;     &#xD;&#xA;)&#xD;&#xA;@echo &quot;---------- Cleaning up .ts files from obj folder (end) ---------&quot;" />
+  </Target>
+
+
+  <ProjectExtensions><VisualStudio><UserProperties package_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
+</Project>

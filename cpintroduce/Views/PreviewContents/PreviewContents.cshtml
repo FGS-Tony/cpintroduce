@@ -1,0 +1,42 @@
+﻿
+@model  cpintroduce.Models.ContentsModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "文章預覽";
+}
+
+@*<h3>@Model.Name</h3>
+
+<div>
+    @Html.Raw(@Model.Contents)
+</div>*@
+
+<section class="article">
+    <h2>@Model.Name</h2>
+    <div>
+        @Html.Raw(@Model.Contentsnotag)
+    </div>
+</section>
+<style type="text/css">
+    body {
+        font-family: helvetica,arial,"sans-serif",Arial,ROCK,Microsoft YaHei,"微軟正黑體";
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .article {
+        max-width: 1170px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    img {
+        position: relative;
+        top: 2px;
+    }
+</style>
+

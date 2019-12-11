@@ -1,0 +1,13 @@
+﻿
+@Html.Partial("_Topnav")
+@*@Html.Partial("_Breadcrumb")*@
+@*@Html.Partial("_Sidebar")*@
+ 
+<div class="content-wrapper"  style="min-height:800px">
+    <p-confirmDialog acceptLabel="確認" rejectLabel="放棄" header="刪除確認">
+    </p-confirmDialog>
+    <router-outlet></router-outlet>
+</div>
+
+@*@Html.Partial("_Footer")*@
+<!-- Main content -->

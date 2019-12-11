@@ -1,0 +1,95 @@
+﻿
+<section class="content-header">
+    <h1>
+        全集書籍資料維護
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>首頁</a></li>
+        <li class="active"> 全集書籍資料維護</li>
+    </ol>
+</section>
+<section class="content">
+
+    <div class="box box-primary">
+        <div class="box-header">
+             <div class="row">
+                 <div class="col-sm-3">
+                     <label for="bclass_no" class="control-label" style="margin-left:1em">全集大類:</label>
+                     <kendo-dropdownlist [data]="cpbclass"
+                                         [defaultItem]="{ cpbclass_name: '選擇全部', cpbclass_no:0 }"
+                                         [(ngModel)]="cpbclass_no"
+                                         [textField]="'cpbclass_name'"
+                                         [valuePrimitive]="true"
+                                         [valueField]="'cpbclass_no'"                                         
+                                         [width]="200">
+                     </kendo-dropdownlist>
+                 </div>
+                <div class="col-sm-9">
+                   <div class="col-sm-9">
+                        <label [for]="'querystring'">請輸入查詢書籍名稱: </label>
+                         <input id="querystring" kendoTextBox [(ngModel)]="queryname" style="max-width:400px;width:400px" />
+                   </div>
+                   <div class="col-sm-3">
+                       <button kendoButton (click)="doExecQuery()" [primary]="true" class="btn-primary" style="width:150px">執行查詢</button>
+                   </div>
+                 </div>
+              </div>
+            </div>
+        <div class="box-body">
+            <div [ngBusy]="busy"></div>
+            <kendo-grid [data]="view | async"
+                        [resizable]="true"
+                        [height]="500"
+                        [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
+                        [pageable]="true" [sortable]="true"
+                        (dataStateChange)="onStateChange($event)"
+                        (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
+                        (save)="saveHandler($event)" (remove)="removeHandler($event)"
+                        (add)="addHandler($event)">
+                <ng-template kendoGridToolbarTemplate>
+                    <button kendoGridAddCommand>新增資料</button>
+                </ng-template>
+                <kendo-grid-column field="cpbclass_no" title="大類名稱" [width]="150">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+
+                        {{getcpbclassname(dataItem.cpbclass_no)?.cpbclass_name}}
+                    </ng-template>
+                    <ng-template kendoGridEditTemplate
+                                 let-dataItem="dataItem"
+                                 let-formGroup="formGroup">
+                        <kendo-dropdownlist [data]="cpbclass"
+                                            [defaultItem]="{ cpbclass_name: '請選擇大類', cpbclass_no:null }"
+                                            textField="cpbclass_name"
+                                            valueField="cpbclass_no"
+                                            [valuePrimitive]="true"
+                                            [formControl]="formGroup.get('cpbclass_no')"
+                                            [width]="150">
+                        </kendo-dropdownlist>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="cpbook_name" title="書籍名稱"></kendo-grid-column>
+                <kendo-grid-column field="cpbook_isdisplay" editor="boolean" title="是否顯示" [width]="100">
+                    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex" >
+                        {{dataItem.cpbook_isdisplay ? "顯示" : "不顯示"}}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="cpbook_sort" title="資料排序" [width]="100"></kendo-grid-column>
+                @*<kendo-grid-column field="cpbook_isvalid" editor="boolean" title="是否有效">
+            <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.cpbook_isvalid ? "有效" : "無效"}}
+            </ng-template>
+        </kendo-grid-column>*@
+                <kendo-grid-command-column title="功能鍵" width="220">
+                    <ng-template kendoGridCellTemplate let-isNew="isNew">
+                        <button kendoGridEditCommand class="k-primary">修改</button>
+                        <button kendoGridRemoveCommand>刪除</button>
+                        <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? '新增存檔' : '修改存檔' }}</button>
+                        <button kendoGridCancelCommand>{{ isNew ? '取消' : '取消' }}</button>
+                    </ng-template>
+                </kendo-grid-command-column>
+                <kendo-grid-messages noRecords="無資料顯示">
+                </kendo-grid-messages>
+            </kendo-grid>
+        </div>
+    </div>
+</section>

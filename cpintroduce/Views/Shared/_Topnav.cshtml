@@ -1,0 +1,93 @@
+﻿ <header class="main-header">
+ 
+    <nav class="navbar navbar-static-top"  >
+        <div class="container">
+            <div class="navbar-header">
+                   <a routerLink="/home" class="navbar-brand"> FGS全集管理系統</a>              
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+               
+            </div>
+            <div class="collapse navbar-collapse pull-left" id="navbar-collapse">                 
+                <ul class="nav navbar-nav">
+                    <li><a routerLink="/cpintroduce">全集簡介維護</a></li>
+                    <li><a routerLink="/cpbclass">全集大類維護</a></li>
+                    <li><a routerLink="/cpbook">全集書籍資料維護</a></li>
+                    <li><a routerLink="/cpchapter">全集章節資料維護</a></li>
+                    <li><a routerLink="/links">相關連結維護</a></li>
+                    <li><a routerLink="/medialinks">影音弘法連結維護</a></li>
+                    @*<li><a routerLink="/images" (click)="setTitle('圖片資料維護')">圖片資料維護</a></li>
+        <li><a routerLink="/queryimages" (click)="setTitle('圖片搜尋')">圖片搜尋</a></li>
+        <li><a routerLink="/apply" (click)="setTitle('圖片審核')">圖片申請審核</a></li>
+        <li><a routerLink="/downloadimage" (click)="setTitle('圖片下載')">圖片下載</a></li>
+        <li><a routerLink="/audit" (click)="setTitle('審核人維護')">審核人維護</a></li>
+        <li><a routerLink="/external" (click)="setTitle('審核人維護')">測試維護</a></li>*@
+                    @*<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a routerLink="/home" (click)="setTitle('Home - A2SPA')" >選單一</a></li>
+                <li><a routerLink="/about" (click)="setTitle('about - A2SPA')">選單二</a></li>
+                <li><a routerLink="/contact" (click)="setTitle('contact - A2SPA')">選單三</a></li>
+                <li class="divider"></li>
+                <li><a href="#">選單四</a></li>
+                <li class="divider"></li>
+                <li><a href="#">選單五</a></li>
+            </ul>
+        </li>*@
+                </ul>
+               
+            </div>
+
+            <!--個人選單項-->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="max-width: 250px;text-overflow: clip;overflow: hidden;white-space: nowrap;">
+                            <img src="~/images/user01.jpg" class="user-image" alt="User Image">
+                            <span class="hidden-xs">{{unitname}}/{{username}}</span>                            
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <img src="~/images/user01.jpg" class="img-circle" alt="User Image">
+                                <p>
+                                    <small>{{username}}</small> 
+                                    <small>{{unitname}} </small>
+                                </p>
+                            </li>
+                            @*<!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Followers</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Sales</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Friends</a>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                </div>
+                            </li>*@
+                        </ul>
+                    </li>
+                    <!-- Control Sidebar Toggle Button -->
+                    @*<li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>*@
+                </ul>
+            </div>
+        </div>
+   </nav>  
+</header>
