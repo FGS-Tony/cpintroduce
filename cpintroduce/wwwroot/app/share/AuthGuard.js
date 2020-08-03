@@ -24,6 +24,7 @@ var AuthGuard = /** @class */ (function () {
     }
     AuthGuard.prototype.canActivate = function (route, state) {
         var _this = this;
+        //   return true;
         if (localStorage.getItem('currentUser')) {
             this.iuser = JSON.parse(localStorage.getItem('currentUser'));
             this.login = new login_1.Login();
@@ -49,7 +50,6 @@ var AuthGuard = /** @class */ (function () {
                     }, function (error) { return console.log(error); });
                 }
                 else {
-                    return true;
                     _this.router.navigate(['/errorpage'], { queryParams: { returnUrl: state.url } });
                     return false;
                 }

@@ -9,7 +9,7 @@ import { tap } from 'rxjs/operators/tap';
 @Injectable()
 export class CpChapterServices  {
     child: boolean;
-    cpbclassurl: string = "cpbclass/getcpbclassalldata";
+    cpbclassurl: string = "cpbclass/getcpbclasstreedata";
     cpbookurl: string = "cpbook/getcpbookbybclass/";
     cpchapterurl: string = "cpchapter/getcpchapterbybook/";
     cpchapterurl1: string = "cpchapter/getcpchapterbychapter/";

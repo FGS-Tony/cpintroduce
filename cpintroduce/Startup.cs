@@ -40,11 +40,13 @@ namespace cpintroduce
                  b => b.MigrationsAssembly("Cpintrduce")));
             services.AddDbContext<EipContext>(options => options.UseSqlServer(EipConnectionString));
             services.AddMvc();
-            services.Configure<MongoDbSettings>(options =>
-            {
-                options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
-                options.Database = Configuration.GetSection("MongoConnection:Database").Value;
-            });
+
+            //使用mongo db 時用到
+            //services.Configure<MongoDbSettings>(options =>
+            //{
+            //    options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
+            //    options.Database = Configuration.GetSection("MongoConnection:Database").Value;
+            //});
 
             services.AddScoped<IMoCpchapterDataRepository, MoCpchapterDataRepository>();
             services.AddScoped<ILinksDataRepository, LinksDataRepository>();

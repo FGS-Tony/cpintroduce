@@ -48,6 +48,7 @@ namespace cpintroduce.api
         {
             var cpbclassdata = (from p in _fgsdb.CPBclass
                                where p.cpbclass_isvalid == true
+                                 && p.cpbclass_isdisplay == true
                                select new
                                {
                                    cpbclass_no = p.cpbclass_no,
@@ -57,6 +58,25 @@ namespace cpintroduce.api
                                }).OrderBy(p => p.cpbclass_sort).ThenBy(p => p.cpbclass_no); ;
                               
            
+            return new OkObjectResult(cpbclassdata);
+
+        }
+       
+        [HttpGet("getcpbclasstreedata", Name = "getcpbclasstreedata")]
+        public IActionResult GetCpBclassTreedata()
+        {
+            var cpbclassdata = (from p in _fgsdb.CPBclass
+                                where p.cpbclass_isvalid == true
+                                 
+                                select new
+                                {
+                                    cpbclass_no = p.cpbclass_no,
+                                    cpbclass_name = p.cpbclass_name,
+                                    cpbclass_sort = p.cpbclass_sort,
+                                    type = "A"
+                                }).OrderBy(p => p.cpbclass_sort).ThenBy(p => p.cpbclass_no); ;
+
+
             return new OkObjectResult(cpbclassdata);
 
         }

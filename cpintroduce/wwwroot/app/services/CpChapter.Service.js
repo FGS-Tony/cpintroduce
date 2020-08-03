@@ -17,7 +17,7 @@ var CpChapterServices = /** @class */ (function () {
     function CpChapterServices(http, appset) {
         this.http = http;
         this.appset = appset;
-        this.cpbclassurl = "cpbclass/getcpbclassalldata";
+        this.cpbclassurl = "cpbclass/getcpbclassetreedata";
         this.cpbookurl = "cpbook/getcpbookbybclass/";
         this.cpchapterurl = "cpchapter/getcpchapterbybook/";
         this.cpchapterurl1 = "cpchapter/getcpchapterbychapter/";

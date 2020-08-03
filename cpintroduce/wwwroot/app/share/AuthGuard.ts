@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
         { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-         
+     //   return true;
         if (localStorage.getItem('currentUser')) {        
             this.iuser = JSON.parse(localStorage.getItem('currentUser'));
             this.login = new Login();         
@@ -48,7 +48,7 @@ export class AuthGuard implements CanActivate {
                         )                      
                     }
                     else {
-                        return true;
+                     
                         this.router.navigate(['/errorpage'], { queryParams: { returnUrl: state.url } });
                         return false;
                     }
