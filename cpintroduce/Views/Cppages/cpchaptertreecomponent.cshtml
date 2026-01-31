@@ -37,7 +37,7 @@
  
     <kendo-dialog-titlebar style="text-align:center">
         <div class="text-center" style="float:left">
-            <button type="button" class="k-button k-primary" (click)="submit()"  style="margin-right:1em">確認存檔</button>
+            <button type="button" class="k-button k-primary" (click)="submit()"  style="margin-right:1em" [disabled]="isSubmit">確認存檔</button>
             <button type="button" class="k-button" (click)="close()">放棄{{ isNew ? '新增' : '修改' }} </button>
             <span style="margin-left:25em">{{ isNew ? '新增資料' : '修改資料' }} </span>
         </div>

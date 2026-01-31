@@ -9,6 +9,7 @@ using FgsModel.Entitys;
 using cpintroduce.ViewModels;
 using FgsModel;
 using Cpmongo;
+using MongoDB.Driver;
 
 namespace cpintroduce.api
 {
@@ -43,6 +44,7 @@ namespace cpintroduce.api
         {
 
             IEnumerable<CpChapter> cpchapterdata = _cpchapterdatarepository.FindBy(p => p.cpchapter_no == chapterno);
+
             return new OkObjectResult(cpchapterdata);
 
         }
@@ -111,6 +113,10 @@ namespace cpintroduce.api
         [HttpPost("create")]
         public IActionResult Create([FromBody] CpChapterViewModel cpchapterviewmodel)
         {
+            if (User.Identity.Name == null )
+            {
+                return new BadRequestObjectResult( cpchapterviewmodel);
+            }
             CpChapter cpchapterupper = new CpChapter();
             //mongo db 專用
             //MoCpchapter moCpchapter = new MoCpchapter();
@@ -166,6 +172,10 @@ namespace cpintroduce.api
         [HttpPost("update")]
         public IActionResult Update([FromBody] CpChapterViewModel cpchapterviewmodel)
         {
+            if (User.Identity.Name == null)
+            {
+                return new BadRequestObjectResult(cpchapterviewmodel);
+            }
             CpChapter cpchapter = _cpchapterdatarepository.GetSingle(p => p.cpchapter_no == cpchapterviewmodel.cpchapter_no);
             cpchapter.euser = User.Identity.Name;
             cpchapter.etime = DateTime.Now;
@@ -208,34 +218,41 @@ namespace cpintroduce.api
         [HttpPost("delete")]
         public IActionResult Delete([FromBody] CpChapterViewModel cpchapterviewmodel)
         {
-            CpChapter cpchapter = _cpchapterdatarepository.GetSingle(p => p.cpchapter_no == cpchapterviewmodel.cpchapter_no);
-            cpchapter.euser = User.Identity.Name;
-            cpchapter.etime = DateTime.Now;
-            cpchapter.cpchapter_isvalid = false;
-            //mongo db 專用
-            //MoCpchapter moCpchapter = new MoCpchapter();
-            //var moCpchapterData = _imocpchapterdatarepository.GetSingle("cpchapter", p => p.Cpchapter_No == cpchapterviewmodel.cpchapter_no);
-            //if (moCpchapterData != null )
-            //{
-            //    moCpchapter = moCpchapterData;
-            //}
-            //mongo db 專用
-            //moCpchapter.Cpchapter_No = cpchapter.cpchapter_no;
-            //moCpchapter.Cuser = User.Identity.Name;
-            //moCpchapter.Etime = DateTime.Now.AddHours(8);
-            //moCpchapter.Cpchapter_Level = cpchapterviewmodel.cpchapter_level;
-            //moCpchapter.Cpchapter_Upper = cpchapterviewmodel.cpchapter_upper;
-            //moCpchapter.Cpchapter_Iscontents = cpchapterviewmodel.cpchapter_iscontents;
-            //moCpchapter.Cpchapter_Sort = cpchapter.cpchapter_sort;
-            //moCpchapter.Cpbook_No = cpchapterviewmodel.cpbook_no;
-            //moCpchapter.Cpchapter_Name = cpchapterviewmodel.cpchapter_name;
-            //moCpchapter.Cpchapter_Contents = cpchapterviewmodel.cpchapter_contents;
-            //moCpchapter.Cpchapter_Contentsnohtml = cpchapter.cpchapter_contentsnohtml;
-            //moCpchapter.Cpchapter_Isvalid = false;
-            //_imocpchapterdatarepository.Update("cpchapter", moCpchapter, p => p.Cpchapter_No == cpchapter.cpchapter_no);
-            _cpchapterdatarepository.Update(cpchapter);
-            _cpchapterdatarepository.Commit();
-            return new OkObjectResult(cpchapterviewmodel);
+            if (User.Identity.Name == null)
+            {
+                return new BadRequestObjectResult(cpchapterviewmodel);
+            }
+
+           
+                CpChapter cpchapter = _cpchapterdatarepository.GetSingle(p => p.cpchapter_no == cpchapterviewmodel.cpchapter_no);
+                cpchapter.euser = User.Identity.Name;
+                cpchapter.etime = DateTime.Now;
+                cpchapter.cpchapter_isvalid = false;
+                //mongo db 專用
+                //MoCpchapter moCpchapter = new MoCpchapter();
+                //var moCpchapterData = _imocpchapterdatarepository.GetSingle("cpchapter", p => p.Cpchapter_No == cpchapterviewmodel.cpchapter_no);
+                //if (moCpchapterData != null )
+                //{
+                //    moCpchapter = moCpchapterData;
+                //}
+                //mongo db 專用
+                //moCpchapter.Cpchapter_No = cpchapter.cpchapter_no;
+                //moCpchapter.Cuser = User.Identity.Name;
+                //moCpchapter.Etime = DateTime.Now.AddHours(8);
+                //moCpchapter.Cpchapter_Level = cpchapterviewmodel.cpchapter_level;
+                //moCpchapter.Cpchapter_Upper = cpchapterviewmodel.cpchapter_upper;
+                //moCpchapter.Cpchapter_Iscontents = cpchapterviewmodel.cpchapter_iscontents;
+                //moCpchapter.Cpchapter_Sort = cpchapter.cpchapter_sort;
+                //moCpchapter.Cpbook_No = cpchapterviewmodel.cpbook_no;
+                //moCpchapter.Cpchapter_Name = cpchapterviewmodel.cpchapter_name;
+                //moCpchapter.Cpchapter_Contents = cpchapterviewmodel.cpchapter_contents;
+                //moCpchapter.Cpchapter_Contentsnohtml = cpchapter.cpchapter_contentsnohtml;
+                //moCpchapter.Cpchapter_Isvalid = false;
+                //_imocpchapterdatarepository.Update("cpchapter", moCpchapter, p => p.Cpchapter_No == cpchapter.cpchapter_no);
+                _cpchapterdatarepository.Update(cpchapter);
+                _cpchapterdatarepository.Commit();
+                return new OkObjectResult(cpchapterviewmodel);
+            
         }
         [HttpPost("updatecontents")]
         public IActionResult UpdateContents([FromBody] CpChapterViewModel cpchapterviewmodel)
@@ -352,7 +369,7 @@ namespace cpintroduce.api
                                      cpchapter_upper = p.cpchapter_upper,
                                      cpchapter_level = p.cpchapter_level,
                                      cpchapter_sort = p.cpchapter_sort.HasValue ? p.cpchapter_sort.Value : 0,
-                                     cpchapter_contents = htmlConvert.replaceHtml(p.cpchapter_contents),
+                                     cpchapter_contents =  htmlConvert.replaceHtml(p.cpchapter_contents).Replace("http:","https:"),
                                      cpchapter_iscontents = p.cpchapter_iscontents,
                                      cpbook_no = p.cpbook_no,
                                      cpbook_name = p.cpchapter_upper == 0 ?
@@ -379,6 +396,15 @@ namespace cpintroduce.api
             return new OkObjectResult(chaptername);
 
         }
+        [HttpGet("getUpperCount/{id}", Name = "getUpperCount")]
+        public IActionResult getUpperCount(int id)
+        {
 
+            int icount = _fgsdb.CPChapter.Where(p => p.cpchapter_upper == id).Count();
+           
+
+            return new OkObjectResult(icount);
+
+        }
     }
 }

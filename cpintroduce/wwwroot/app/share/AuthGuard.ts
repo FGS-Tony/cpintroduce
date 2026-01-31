@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
             this.iuser = JSON.parse(localStorage.getItem('currentUser'));
             this.login = new Login();         
             this.login.pgId = route.data.pg;
-            this.login.userNo = this.iuser.user_no;            
+            this.login.userNo = this.iuser.user_no;                        
             this.httpClient.get(this.appset.api_url + "accounts/checklogin/").subscribe
                 ((data: any) => {                              
                     this.login = data;       
@@ -32,7 +32,7 @@ export class AuthGuard implements CanActivate {
                         this.appset.setUserName(this.login.userName);
                         this.appset.setUnitNo(this.login.unit_No);
                         this.appset.setUserNo(this.login.userNo);
-                        this.appset.setIsLogin(this.login.isLogin);
+                        this.appset.setIsLogin(this.login.isLogin);                       
                         this.securityservice.getCheckPgSecurity(this.login).subscribe(
                             (data:any) => {
                                  if (data.pgExecurity) {

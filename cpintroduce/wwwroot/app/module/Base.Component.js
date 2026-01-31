@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BaseComponent = void 0;
 var forms_1 = require("@angular/forms");
 var kendo_data_query_1 = require("@progress/kendo-data-query");
 var map_1 = require("rxjs/operators/map");
@@ -20,7 +21,7 @@ var BaseComponent = /** @class */ (function () {
         this.editService.busya.subscribe(function (data) {
             _this.busy = data;
         });
-        this.view = this.editService.pipe(map_1.map(function (data) { return kendo_data_query_1.process(data, _this.gridState); }));
+        this.view = this.editService.pipe((0, map_1.map)(function (data) { return (0, kendo_data_query_1.process)(data, _this.gridState); }));
     };
     BaseComponent.prototype.doQuery = function () {
         this.editService.doQuery(this.querystring);

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BasePopupEditComponent = void 0;
 var kendo_data_query_1 = require("@progress/kendo-data-query");
 var map_1 = require("rxjs/operators/map");
 //import { tap } from 'rxjs/operators/tap';
@@ -20,7 +21,7 @@ var BasePopupEditComponent = /** @class */ (function () {
         this.editService.busya.subscribe(function (data) {
             _this.busy = data;
         });
-        this.view = this.editService.pipe(map_1.map(function (data) { return kendo_data_query_1.process(data, _this.gridState); }));
+        this.view = this.editService.pipe((0, map_1.map)(function (data) { return (0, kendo_data_query_1.process)(data, _this.gridState); }));
     };
     BasePopupEditComponent.prototype.doQuery = function () {
         this.editService.doQuery(this.querystring);

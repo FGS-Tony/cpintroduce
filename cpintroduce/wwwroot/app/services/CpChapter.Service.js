@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CpChapterServices = void 0;
 var core_1 = require("@angular/core");
 var appset_1 = require("../provider/appset");
 var http_1 = require("@angular/common/http");
@@ -17,7 +18,7 @@ var CpChapterServices = /** @class */ (function () {
     function CpChapterServices(http, appset) {
         this.http = http;
         this.appset = appset;
-        this.cpbclassurl = "cpbclass/getcpbclassetreedata";
+        this.cpbclassurl = "cpbclass/getcpbclasstreedata";
         this.cpbookurl = "cpbook/getcpbookbybclass/";
         this.cpchapterurl = "cpchapter/getcpchapterbybook/";
         this.cpchapterurl1 = "cpchapter/getcpchapterbychapter/";
@@ -25,23 +26,23 @@ var CpChapterServices = /** @class */ (function () {
     }
     CpChapterServices.prototype.GetCpBclass = function () {
         return this.http.get(this.appset.api_url + this.cpbclassurl)
-            .pipe(map_1.map(function (data) { return data; }));
+            .pipe((0, map_1.map)(function (data) { return data; }));
     };
     CpChapterServices.prototype.GetCpBookByBclass = function (cpbclassno) {
         return this.http.get(this.appset.api_url + this.cpbookurl + cpbclassno)
-            .pipe(map_1.map(function (data) { return data; }));
+            .pipe((0, map_1.map)(function (data) { return data; }));
     };
     CpChapterServices.prototype.GetCpChapterByBook = function (cpbookno) {
         return this.http.get(this.appset.api_url + this.cpchapterurl + cpbookno)
-            .pipe(map_1.map(function (data) { return data; }));
+            .pipe((0, map_1.map)(function (data) { return data; }));
     };
     CpChapterServices.prototype.GetCpChapterByChapter = function (cpchapterno) {
         return this.http.get(this.appset.api_url + this.cpchapterurl1 + cpchapterno)
-            .pipe(map_1.map(function (data) { return data; }));
+            .pipe((0, map_1.map)(function (data) { return data; }));
     };
     CpChapterServices.prototype.GetCpContentsByChapter = function (cpchapterno) {
         return this.http.get(this.appset.api_url + this.cpcontentsurl + cpchapterno)
-            .pipe(map_1.map(function (data) { return data; }));
+            .pipe((0, map_1.map)(function (data) { return data; }));
     };
     CpChapterServices.prototype.GetTreeData = function (node) {
         switch (node.type) {
@@ -68,7 +69,7 @@ var CpChapterServices = /** @class */ (function () {
         //     return this.GetCpBookByBclass(node.cpbookno);
     };
     CpChapterServices = __decorate([
-        core_1.Injectable(),
+        (0, core_1.Injectable)(),
         __metadata("design:paramtypes", [http_1.HttpClient, appset_1.AppSet])
     ], CpChapterServices);
     return CpChapterServices;

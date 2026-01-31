@@ -3,10 +3,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -22,6 +24,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.VegRootEditComponent = void 0;
 var core_1 = require("@angular/core");
 var externalEditBase_Component_1 = require("../module/externalEditBase.Component");
 var VegRootEdit_Services_1 = require("../services/VegRootEdit.Services");
@@ -50,7 +53,7 @@ var VegRootEditComponent = /** @class */ (function (_super) {
         return _this;
     }
     VegRootEditComponent = __decorate([
-        core_1.Component({
+        (0, core_1.Component)({
             selector: 'vegroot-edit-form',
             styles: ['input[type=text] { width: 80%; max-width:800px} .k-switch-label-off, .k-switch-label-on{ color: red }'],
             templateUrl: '/cppages/vegrooteditcomponent'

@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RowClickDirective = void 0;
 var core_1 = require("@angular/core");
 var hasClass = function (el, className) { return new RegExp(className).test(el.className); };
 var isChildOf = function (el, className) {
@@ -54,15 +55,15 @@ var RowClickDirective = /** @class */ (function () {
         });
     };
     __decorate([
-        core_1.Output(),
+        (0, core_1.Output)(),
         __metadata("design:type", core_1.EventEmitter)
     ], RowClickDirective.prototype, "editRow", void 0);
     __decorate([
-        core_1.Output(),
+        (0, core_1.Output)(),
         __metadata("design:type", core_1.EventEmitter)
     ], RowClickDirective.prototype, "saveRow", void 0);
     RowClickDirective = __decorate([
-        core_1.Directive({
+        (0, core_1.Directive)({
             selector: '[rowClick]'
         }),
         __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer2])

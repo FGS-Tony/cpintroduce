@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.externalEditBaseComponent = void 0;
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var externalEditBaseComponent = /** @class */ (function () {
@@ -27,7 +28,7 @@ var externalEditBaseComponent = /** @class */ (function () {
             this.editForm.reset(dataModel);
             this.active = dataModel !== undefined;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     externalEditBaseComponent.prototype.onSave = function (_a) {
@@ -48,20 +49,20 @@ var externalEditBaseComponent = /** @class */ (function () {
         this.cancel.emit();
     };
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", Boolean)
     ], externalEditBaseComponent.prototype, "isNew", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [Object])
     ], externalEditBaseComponent.prototype, "model", null);
     __decorate([
-        core_1.Output(),
+        (0, core_1.Output)(),
         __metadata("design:type", core_1.EventEmitter)
     ], externalEditBaseComponent.prototype, "cancel", void 0);
     __decorate([
-        core_1.Output(),
+        (0, core_1.Output)(),
         __metadata("design:type", core_1.EventEmitter)
     ], externalEditBaseComponent.prototype, "save", void 0);
     return externalEditBaseComponent;

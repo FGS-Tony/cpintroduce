@@ -3,10 +3,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -21,7 +23,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ExternalBaseService = void 0;
 var core_1 = require("@angular/core");
 //import { Http, Headers, RequestOptions } from '@angular/http';
 var http_1 = require("@angular/common/http");
@@ -48,21 +60,21 @@ var ExternalBaseService = /** @class */ (function (_super) {
         set: function (queryvalue) {
             this.queryparm = queryvalue;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(ExternalBaseService.prototype, "queryUrl", {
         set: function (queryurl) {
             this.queryurl = queryurl;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(ExternalBaseService.prototype, "saveUrl", {
         set: function (saveurl) {
             this.saveurl = saveurl;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ExternalBaseService.prototype.setOldItem = function (item) {
@@ -77,7 +89,7 @@ var ExternalBaseService = /** @class */ (function (_super) {
         }
         else {
             this.fetch()
-                .pipe(tap_1.tap(function (data) {
+                .pipe((0, tap_1.tap)(function (data) {
                 _this.data = data;
             }))
                 .subscribe(function (data) {
@@ -98,7 +110,7 @@ var ExternalBaseService = /** @class */ (function (_super) {
         this.busya.next(["busy"]);
         this.reset();
         this.fetch()
-            .pipe(tap_1.tap(function (data) {
+            .pipe((0, tap_1.tap)(function (data) {
             _this.data = data;
         }))
             .subscribe(function (data) {
@@ -121,10 +133,10 @@ var ExternalBaseService = /** @class */ (function (_super) {
     ExternalBaseService.prototype.remove = function (data) {
         //  this.reset();
         var index = this.findSelecteIndex(data);
-        var tempdata = this.data.slice();
+        var tempdata = __spreadArray([], this.data, true);
         this.data = [];
         tempdata.splice(index, 1);
-        this.data = tempdata.slice();
+        this.data = __spreadArray([], tempdata, true);
         _super.prototype.next.call(this, this.data);
         return this.savedata(REMOVE_ACTION, data);
     };
@@ -140,20 +152,20 @@ var ExternalBaseService = /** @class */ (function (_super) {
         this.data = [];
     };
     ExternalBaseService.prototype.addRow = function (data) {
-        var tempdata = this.data.slice();
+        var tempdata = __spreadArray([], this.data, true);
         this.data = [];
         tempdata.push(data);
-        this.data = tempdata.slice();
+        this.data = __spreadArray([], tempdata, true);
         _super.prototype.next.call(this, this.data);
     };
     ExternalBaseService.prototype.updateRow = function (data) {
         this.preUpdateRow(data, this.data);
         var index = this.findSelecteIndex(this.oldItem);
-        var tempdata = this.data.slice();
+        var tempdata = __spreadArray([], this.data, true);
         this.data = [];
         tempdata.splice(index, 1, data);
         //     tempdata.push(JSON.parse(data));
-        this.data = tempdata.slice();
+        this.data = __spreadArray([], tempdata, true);
         _super.prototype.next.call(this, this.data);
     };
     ExternalBaseService.prototype.findSelecteIndex = function (data) {
@@ -165,7 +177,7 @@ var ExternalBaseService = /** @class */ (function (_super) {
         return this.data.length;
     };
     ExternalBaseService = __decorate([
-        core_1.Injectable(),
+        (0, core_1.Injectable)(),
         __metadata("design:paramtypes", [http_1.HttpClient, appset_1.AppSet])
     ], ExternalBaseService);
     return ExternalBaseService;

@@ -27,6 +27,7 @@ export class CpChapterTreeComponent extends BasePopupEditComponent implements On
     public cpchapter_contents:string;
     public contents: string = " ";
     public maxSort: number;
+    public isSubmit = false;
     @ViewChild("savebtn") savebtn: ElementRef; 
     @ViewChild("cancelbtn") cancelbtn: ElementRef;
     constructor(private CpChapterTreeServiceFactory: CpChapterTreeServices  ) {
@@ -129,11 +130,17 @@ export class CpChapterTreeComponent extends BasePopupEditComponent implements On
 }
     public submit() {
      //   console.log(this.formGroup.value)
-     //   this.savebtn.nativeElement.click();
+        //   this.savebtn.nativeElement.click();
+        this.isSubmit = true;
        
-        this.opened = false;
         this.saveHandler(this.formGroup.value);
-        this.save.emit(this.formGroup.value);
+        this.save.emit(this.formGroup.value);        
+        this.opened = false;
+        setTimeout(() => {
+            this.isSubmit = false;
+        },1000)
+        
+     
       
     }
 

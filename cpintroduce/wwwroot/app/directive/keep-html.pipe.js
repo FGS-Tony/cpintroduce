@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.EscapeHtmlPipe = void 0;
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var EscapeHtmlPipe = /** @class */ (function () {
@@ -19,7 +20,7 @@ var EscapeHtmlPipe = /** @class */ (function () {
         return this.sanitizer.bypassSecurityTrustHtml(content);
     };
     EscapeHtmlPipe = __decorate([
-        core_1.Pipe({ name: 'keepHtml', pure: false }),
+        (0, core_1.Pipe)({ name: 'keepHtml', pure: false }),
         __metadata("design:paramtypes", [platform_browser_1.DomSanitizer])
     ], EscapeHtmlPipe);
     return EscapeHtmlPipe;

@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SecurityService = void 0;
 var core_1 = require("@angular/core");
 //import { Http, Headers, RequestOptions } from '@angular/http';
 var http_1 = require("@angular/common/http");
@@ -39,7 +40,7 @@ var SecurityService = /** @class */ (function () {
         return this.http.post(this.appset.api_url + "accounts/GetCheckPgSecurity", JSON.stringify(this.login), { headers: headers });
     };
     SecurityService = __decorate([
-        core_1.Injectable(),
+        (0, core_1.Injectable)(),
         __metadata("design:paramtypes", [http_1.HttpClient, appset_1.AppSet])
     ], SecurityService);
     return SecurityService;

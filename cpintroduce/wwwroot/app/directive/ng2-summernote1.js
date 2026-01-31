@@ -12,6 +12,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Ng2Summernote1 = void 0;
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
@@ -25,7 +26,6 @@ var Ng2Summernote1 = /** @class */ (function () {
         this.uploadFolder = "";
         this.change = new core_1.EventEmitter();
     }
-    Ng2Summernote1_1 = Ng2Summernote1;
     Object.defineProperty(Ng2Summernote1.prototype, "value", {
         get: function () { return this._value; },
         set: function (v) {
@@ -34,7 +34,7 @@ var Ng2Summernote1 = /** @class */ (function () {
                 this._onChangeCallback(v);
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;
@@ -166,85 +166,84 @@ var Ng2Summernote1 = /** @class */ (function () {
     Ng2Summernote1.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
     Ng2Summernote1.prototype._onChangeCallback = function (_) { };
     Ng2Summernote1.prototype._onTouchedCallback = function () { };
-    var Ng2Summernote1_1;
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", Number)
     ], Ng2Summernote1.prototype, "height", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", Number)
     ], Ng2Summernote1.prototype, "minHeight", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", Number)
     ], Ng2Summernote1.prototype, "maxHeight", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", String)
     ], Ng2Summernote1.prototype, "placeholder", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", Boolean)
     ], Ng2Summernote1.prototype, "focus", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", Boolean)
     ], Ng2Summernote1.prototype, "airMode", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", String)
     ], Ng2Summernote1.prototype, "dialogsInBody", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", Boolean)
     ], Ng2Summernote1.prototype, "editable", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", String)
     ], Ng2Summernote1.prototype, "lang", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", String)
     ], Ng2Summernote1.prototype, "disableResizeEditor", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", Boolean)
     ], Ng2Summernote1.prototype, "serverImgUp", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", Object)
     ], Ng2Summernote1.prototype, "config", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", String)
     ], Ng2Summernote1.prototype, "hostUpload", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", String)
     ], Ng2Summernote1.prototype, "uploadFolder", void 0);
     __decorate([
-        core_1.Output(),
+        (0, core_1.Output)(),
         __metadata("design:type", Object)
     ], Ng2Summernote1.prototype, "change", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [Object])
     ], Ng2Summernote1.prototype, "value", null);
-    Ng2Summernote1 = Ng2Summernote1_1 = __decorate([
-        core_1.Component({
+    Ng2Summernote1 = __decorate([
+        (0, core_1.Component)({
             selector: 'ng2-summernote1',
             providers: [
                 {
                     provide: forms_1.NG_VALUE_ACCESSOR,
-                    useExisting: core_1.forwardRef(function () { return Ng2Summernote1_1; }),
+                    useExisting: (0, core_1.forwardRef)(function () { return Ng2Summernote1; }),
                     multi: true
                 }
             ],
             template: "<div class=\"summernote\"></div>",
         }),
-        __param(0, core_1.Inject(core_1.ElementRef)),
+        __param(0, (0, core_1.Inject)(core_1.ElementRef)),
         __metadata("design:paramtypes", [core_1.ElementRef,
             core_1.NgZone,
             http_1.Http])

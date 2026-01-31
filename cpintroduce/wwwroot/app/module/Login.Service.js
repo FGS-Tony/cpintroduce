@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.LoginService = void 0;
 var appset_1 = require("../provider/appset");
 var core_1 = require("@angular/core");
 var LoginService = /** @class */ (function () {
@@ -20,7 +21,7 @@ var LoginService = /** @class */ (function () {
         this.appset.setUserName("資訊中心");
     };
     LoginService = __decorate([
-        core_1.Injectable(),
+        (0, core_1.Injectable)(),
         __metadata("design:paramtypes", [appset_1.AppSet])
     ], LoginService);
     return LoginService;

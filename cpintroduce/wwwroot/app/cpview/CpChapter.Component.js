@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CpChapterComponent = void 0;
 var core_1 = require("@angular/core");
 var CpChapter_Service_1 = require("../services/CpChapter.Service");
 var kendo_angular_treeview_1 = require("@progress/kendo-angular-treeview");
@@ -70,11 +71,11 @@ var CpChapterComponent = /** @class */ (function () {
         //    this.expand(this.currentnode);
     };
     __decorate([
-        core_1.ViewChild("chaptertreeview"),
+        (0, core_1.ViewChild)("chaptertreeview"),
         __metadata("design:type", kendo_angular_treeview_1.TreeViewComponent)
     ], CpChapterComponent.prototype, "CTreeview", void 0);
     CpChapterComponent = __decorate([
-        core_1.Component({
+        (0, core_1.Component)({
             selector: 'cp-chapter',
             templateUrl: 'cppages/CpChapterComponent'
         }),

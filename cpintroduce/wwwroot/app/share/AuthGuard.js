@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AuthGuard = void 0;
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var Security_Service_1 = require("../module/Security.Service");
@@ -62,7 +63,7 @@ var AuthGuard = /** @class */ (function () {
         }
     };
     AuthGuard = __decorate([
-        core_1.Injectable(),
+        (0, core_1.Injectable)(),
         __metadata("design:paramtypes", [router_1.Router, Security_Service_1.SecurityService,
             http_1.HttpClient, appset_1.AppSet])
     ], AuthGuard);

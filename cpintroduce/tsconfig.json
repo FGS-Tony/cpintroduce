@@ -9,13 +9,14 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
-    //"outDir": "wwwroot",
+    //  "outDir": "wwwroot/js",
     "removeComments": false,
     "rootDir": "wwwroot",
     "sourceMap": true,
     "suppressImplicitAnyIndexErrors": true,
+    "ignoreDeprecations": "5.0",
     "target": "es5"
-    }   ,
+  },
     "exclude": [
       "node_modules",
       "wwwwroot"

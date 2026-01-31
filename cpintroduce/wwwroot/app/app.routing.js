@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.routedComponents = exports.routing = void 0;
 var router_1 = require("@angular/router");
 var aboutComponent_1 = require("./aboutComponent");
 var CpBclass_Component_1 = require("./cpview/CpBclass.Component");

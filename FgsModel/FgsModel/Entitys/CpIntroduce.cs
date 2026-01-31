@@ -19,6 +19,10 @@ namespace FgsModel.Entitys
 
         [Display(Name = "星雲之道")]
         public string cpintro_masterroad { set; get; }
+
+        [Display(Name = "全集新舊目錄對照")]
+        public string cpintro_newoldcheck { set; get; }
+
         [Display(Name = "修改時間")]
         public Nullable<DateTime> etime { set; get; }
 

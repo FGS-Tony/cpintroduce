@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CpContents = exports.CpChapter = exports.CpBook = exports.CpBclass = void 0;
 var CpBclass = /** @class */ (function () {
     function CpBclass() {
         this.type = "A";

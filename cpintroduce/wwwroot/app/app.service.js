@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.appService = void 0;
 var Security_Service_1 = require("./module/Security.Service");
 var bclassExternalEdit_Service_1 = require("./module/bclassExternalEdit.Service");
 var CpBclass_Services_1 = require("./services/CpBclass.Services");

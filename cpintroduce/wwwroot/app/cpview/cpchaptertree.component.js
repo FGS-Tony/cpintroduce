@@ -3,10 +3,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -22,6 +24,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CpChapterTreeComponent = void 0;
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var CpChapterTree_Services_1 = require("../services/CpChapterTree.Services");
@@ -39,6 +42,7 @@ var CpChapterTreeComponent = /** @class */ (function (_super) {
         _this.hostUpload = "/api/image/UploadImage";
         _this.uploadFolder = "images";
         _this.contents = " ";
+        _this.isSubmit = false;
         _this.save = new core_1.EventEmitter();
         _this.editService.saveUrl = "cpchapter";
         _this.editService.queryUrl = "cpchapter/getcpchapterbybook";
@@ -55,7 +59,7 @@ var CpChapterTreeComponent = /** @class */ (function (_super) {
                 this.cpbookno = cpbookno;
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(CpChapterTreeComponent.prototype, "chapterno", {
@@ -66,7 +70,7 @@ var CpChapterTreeComponent = /** @class */ (function (_super) {
                 this.cpchapterupper = chapterno;
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(CpChapterTreeComponent.prototype, "setbookno", {
@@ -75,7 +79,7 @@ var CpChapterTreeComponent = /** @class */ (function (_super) {
                 this.cpbookno = cpbookno;
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     CpChapterTreeComponent.prototype.preaddHandler = function (_a) {
@@ -130,45 +134,50 @@ var CpChapterTreeComponent = /** @class */ (function (_super) {
         this.opened1 = true;
     };
     CpChapterTreeComponent.prototype.submit = function () {
+        var _this = this;
         //   console.log(this.formGroup.value)
         //   this.savebtn.nativeElement.click();
-        this.opened = false;
+        this.isSubmit = true;
         this.saveHandler(this.formGroup.value);
         this.save.emit(this.formGroup.value);
+        this.opened = false;
+        setTimeout(function () {
+            _this.isSubmit = false;
+        }, 1000);
     };
     __decorate([
-        core_1.ViewChild("savebtn"),
+        (0, core_1.ViewChild)("savebtn"),
         __metadata("design:type", core_1.ElementRef)
     ], CpChapterTreeComponent.prototype, "savebtn", void 0);
     __decorate([
-        core_1.ViewChild("cancelbtn"),
+        (0, core_1.ViewChild)("cancelbtn"),
         __metadata("design:type", core_1.ElementRef)
     ], CpChapterTreeComponent.prototype, "cancelbtn", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [Number])
     ], CpChapterTreeComponent.prototype, "bookno", null);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [Number])
     ], CpChapterTreeComponent.prototype, "chapterno", null);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", String)
     ], CpChapterTreeComponent.prototype, "cpchapter_upname", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [Number])
     ], CpChapterTreeComponent.prototype, "setbookno", null);
     __decorate([
-        core_1.Output(),
+        (0, core_1.Output)(),
         __metadata("design:type", core_1.EventEmitter)
     ], CpChapterTreeComponent.prototype, "save", void 0);
     CpChapterTreeComponent = __decorate([
-        core_1.Component({
+        (0, core_1.Component)({
             selector: 'cp-chaptertree',
             templateUrl: 'cppages/CpChapterTreeComponent'
         }),

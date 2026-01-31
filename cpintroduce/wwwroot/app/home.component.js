@@ -6,13 +6,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.HomeComponent = void 0;
 var core_1 = require("@angular/core");
 var HomeComponent = /** @class */ (function () {
     function HomeComponent() {
         this.angularTitle = "歡迎光臨 index";
     }
     HomeComponent = __decorate([
-        core_1.Component({
+        (0, core_1.Component)({
             selector: 'fgs-home',
             templateUrl: '/Home/HomeComponent'
         })

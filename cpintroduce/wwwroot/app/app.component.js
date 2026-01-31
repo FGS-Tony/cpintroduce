@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AppComponent = void 0;
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var appset_1 = require("./provider/appset");
@@ -68,7 +69,7 @@ var AppComponent = /** @class */ (function () {
         }
     };
     AppComponent = __decorate([
-        core_1.Component({
+        (0, core_1.Component)({
             selector: 'my-app',
             templateUrl: '/home/appComponent'
         }),

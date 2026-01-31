@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.PrimengModule = exports.KendouiModule = void 0;
 //Kendo ui
 var kendo_angular_grid_1 = require("@progress/kendo-angular-grid");
 var kendo_angular_buttons_1 = require("@progress/kendo-angular-buttons");

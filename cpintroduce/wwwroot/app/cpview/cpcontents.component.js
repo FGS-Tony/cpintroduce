@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CpContentsComponent = void 0;
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
 var appset_1 = require("../provider/appset");
@@ -26,6 +27,7 @@ var CpContentsComponent = /** @class */ (function () {
         this.action = "updatecontents";
         this.hostUpload = "/api/image/UploadImage";
         this.uploadFolder = "images";
+        this.isSubmit = false;
     }
     Object.defineProperty(CpContentsComponent.prototype, "chapterno", {
         set: function (chapter_no) {
@@ -38,7 +40,7 @@ var CpContentsComponent = /** @class */ (function () {
             }, function (error) { return console.log(error); });
             //   this.editService
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     CpContentsComponent.prototype.ngOnInit = function () {
@@ -63,36 +65,40 @@ var CpContentsComponent = /** @class */ (function () {
         this.cpchapter.cpchapter_sort = this.cpchapter_sort;
         this.cpchapter.cpchapter_contents = this.cpchapter_contents;
         var headers = new http_1.HttpHeaders().set('Content-Type', 'application/json');
-        this.http.post(this.appset.api_url + this.saveUrl + "/" + this.action, JSON.stringify(this.cpchapter), { headers: headers }).
-            subscribe(function (data) {
-            _this.appset.sayAlert("存檔成功");
-            _this.opened = false;
-            _this.save.emit(_this.cpchapter);
-        }, function (error) { console.log(error); _this.appset.sayAlert("存檔失敗"); });
+        if (!this.isSubmit) {
+            this.isSubmit = true;
+            this.http.post(this.appset.api_url + this.saveUrl + "/" + this.action, JSON.stringify(this.cpchapter), { headers: headers }).
+                subscribe(function (data) {
+                _this.appset.sayAlert("存檔成功");
+                _this.opened = false;
+                _this.save.emit(_this.cpchapter);
+                _this.isSubmit = false;
+            }, function (error) { console.log(error); _this.appset.sayAlert("存檔失敗"); _this.isSubmit = false; });
+        }
     };
     __decorate([
-        core_1.Output(),
+        (0, core_1.Output)(),
         __metadata("design:type", core_1.EventEmitter)
     ], CpContentsComponent.prototype, "save", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", String)
     ], CpContentsComponent.prototype, "cpchapter_name", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", String)
     ], CpContentsComponent.prototype, "cpchapter_contents", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", Number)
     ], CpContentsComponent.prototype, "cpchapter_sort", void 0);
     __decorate([
-        core_1.Input(),
+        (0, core_1.Input)(),
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [Number])
     ], CpContentsComponent.prototype, "chapterno", null);
     CpContentsComponent = __decorate([
-        core_1.Component({
+        (0, core_1.Component)({
             selector: 'cp-contents',
             templateUrl: 'cppages/cpcontentscomponent',
             styles: ['img { width:270px;height:270px }']

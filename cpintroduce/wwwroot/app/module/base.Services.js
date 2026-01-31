@@ -3,10 +3,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -21,7 +23,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.baseServices = void 0;
 var core_1 = require("@angular/core");
 //import { Http, Headers, RequestOptions } from '@angular/http';
 var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
@@ -55,7 +67,7 @@ var baseServices = /** @class */ (function (_super) {
         }
         else {
             this.fetch()
-                .pipe(tap_1.tap(function (data) {
+                .pipe((0, tap_1.tap)(function (data) {
                 _this.data = data;
             }))
                 .subscribe(function (data) {
@@ -80,7 +92,7 @@ var baseServices = /** @class */ (function (_super) {
         }
         this.reset();
         this.fetch(querystring)
-            .pipe(tap_1.tap(function (data) {
+            .pipe((0, tap_1.tap)(function (data) {
             _this.data = data;
         }))
             .subscribe(function (data) {
@@ -100,18 +112,18 @@ var baseServices = /** @class */ (function (_super) {
         this.savedata(action, data)
             .subscribe(function (sdata) {
             if (isNew) {
-                var tempdata = _this.data.slice();
+                var tempdata = __spreadArray([], _this.data, true);
                 _this.data = [];
                 tempdata.push(sdata);
-                _this.data = tempdata.slice();
+                _this.data = __spreadArray([], tempdata, true);
                 _super.prototype.next.call(_this, _this.data);
             }
             else {
                 var index = _this.findSelecteIndex(_this.oldItem);
-                var tempdata = _this.data.slice();
+                var tempdata = __spreadArray([], _this.data, true);
                 _this.data = [];
                 tempdata.splice(index, 1, data);
-                _this.data = tempdata.slice();
+                _this.data = __spreadArray([], tempdata, true);
                 _super.prototype.next.call(_this, _this.data);
             }
             _this.busya.next([]);
@@ -135,10 +147,10 @@ var baseServices = /** @class */ (function (_super) {
     baseServices.prototype.removedata = function (data) {
         //  this.reset();
         var index = this.findSelecteIndex(data);
-        var tempdata = this.data.slice();
+        var tempdata = __spreadArray([], this.data, true);
         this.data = [];
         tempdata.splice(index, 1);
-        this.data = tempdata.slice();
+        this.data = __spreadArray([], tempdata, true);
         _super.prototype.next.call(this, this.data);
         return this.savedata(REMOVE_ACTION, data);
     };
@@ -157,21 +169,21 @@ var baseServices = /** @class */ (function (_super) {
         set: function (url) {
             this.saveurl = url;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(baseServices.prototype, "queryUrl", {
         set: function (url) {
             this.queryurl = url;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     baseServices.prototype.findSelecteIndex = function (data) {
         return this.data.indexOf(data);
     };
     baseServices = __decorate([
-        core_1.Injectable(),
+        (0, core_1.Injectable)(),
         __metadata("design:paramtypes", [http_1.HttpClient, appset_1.AppSet, primeng_1.ConfirmationService])
     ], baseServices);
     return baseServices;

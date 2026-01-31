@@ -3,10 +3,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -25,6 +27,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.VegRootComponent = void 0;
 var core_1 = require("@angular/core");
 var externalBase_Component_1 = require("../module/externalBase.Component");
 var appset_1 = require("../provider/appset");
@@ -43,7 +46,7 @@ var VegRootComponent = /** @class */ (function (_super) {
         _this.editService = vegrooteditservice;
         _this.editService.saveUrl = "vegroot";
         _this.editService.queryUrl = "/vegroot/getvegroot";
-        _this.editService.queryparm = "" + _this.queryString;
+        _this.editService.queryparm = "".concat(_this.queryString);
         return _this;
     }
     VegRootComponent.prototype.ngOnInit = function () {
@@ -61,15 +64,15 @@ var VegRootComponent = /** @class */ (function (_super) {
     };
     VegRootComponent.prototype.doQuery = function () {
         this.queryString = this.queryName == "" ? "ALL" : this.queryName;
-        this.editService.queryparm = "" + this.queryString;
+        this.editService.queryparm = "".concat(this.queryString);
         this.editService.doQuery();
     };
     VegRootComponent = __decorate([
-        core_1.Component({
+        (0, core_1.Component)({
             selector: 'veg-root',
             templateUrl: '/cppages/VegRootComponent'
         }),
-        __param(0, core_1.Inject(VegRootEdit_Services_1.VegrootEditService)),
+        __param(0, (0, core_1.Inject)(VegRootEdit_Services_1.VegrootEditService)),
         __metadata("design:paramtypes", [Object, appset_1.AppSet, primeng_1.ConfirmationService, messageservice_1.MessageService])
     ], VegRootComponent);
     return VegRootComponent;
